@@ -10,6 +10,8 @@ Make sure you:
 2) `pip install rich`
 
 ### How to Run:
+
 1) Download the repo
-2) Open `cmd` from the downloaded folder
-3) Run with `python main.py`
+2) Download `python` from [here](https://www.python.org/downloads/)
+3) Open `cmd` from the downloaded folder
+4) Run with `python main.py`
