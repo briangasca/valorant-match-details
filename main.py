@@ -5,16 +5,7 @@ from rich.console import Console
 from constants import agentMap, rankMap
 
 ## for later: use https://valorant-api.com/v1/weapons for skins matching Uuids
-
 ##note: must be in an active game to use!
-
-client = Client(region="na")
-client.activate()
-
-curr_game = client.coregame_fetch_match()['MatchID']
-matchInfo = client.coregame_fetch_match(curr_game)
-loadouts = client.coregame_fetch_match_loadouts()
-players = matchInfo['Players']
 
 class Player:
     def __init__(self, client, puuid, agentID, team, incognito, level):
@@ -49,6 +40,13 @@ class Player:
     def getAgent(self, agentID):
         return agentMap[agentID]
 
+client = Client(region="na")
+client.activate()
+
+curr_game = client.coregame_fetch_match()['MatchID']
+matchInfo = client.coregame_fetch_match(curr_game)
+loadouts = client.coregame_fetch_match_loadouts()
+players = matchInfo['Players']
 
 active_player_objects = []
 
@@ -63,8 +61,6 @@ for player in players:
         
     ))
 
-print(active_player_objects[0].rank)
-
 ##cmd table
 
 console = Console()
@@ -78,7 +74,7 @@ table.add_column("Level", justify="right")
 
 for player in active_player_objects:
     if player.team == "blue":
-        table.add_row(f"[blue]{player.gameName}[/blue]", f"[blue]Ally {player.agent}[/blue]", str(player.incognito), player.rank, str(player.level))
+        table.add_row(f"[bright_blue]{player.gameName}[/bright_blue]", f"[bright_blue]{player.agent}[/bright_blue]", str(player.incognito), player.rank, str(player.level))
     else:
-        table.add_row(f"[red]{player.gameName}[/red]", f"[red]Enemy {player.agent}[/red]", str(player.incognito), player.rank, str(player.level))
+        table.add_row(f"[bright_red]{player.gameName}[/bright_red]", f"[bright_red]{player.agent}[/bright_red]", str(player.incognito), player.rank, str(player.level))
 console.print(table)
