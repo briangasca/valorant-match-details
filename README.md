@@ -2,7 +2,7 @@
 
 Retrieve match details for every player!
 
---
+---
 
 ### How to Run:
 1) Download the repo
